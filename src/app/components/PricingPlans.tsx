@@ -141,8 +141,8 @@ export default function PricingPlans() {
             Simple, transparent pricing
           </h2>
           <p className="text-[#6E6E8D] text-lg max-w-2xl mx-auto">
-            Choose the perfect plan for your team's needs. All plans include a
-            14-day free trial.
+            Choose the perfect plan for your team&apos;s needs. All plans
+            include a 14-day free trial.
           </p>
         </div>
 

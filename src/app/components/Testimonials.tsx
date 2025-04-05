@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { FaPlay, FaStar } from 'react-icons/fa';
+import Image from 'next/image';
 
 interface TestimonialCardProps {
   name: string;
@@ -21,10 +22,12 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       {/* Video Thumbnail */}
       <div className="relative mb-6 rounded-xl overflow-hidden group cursor-pointer">
         <div className="aspect-video w-full relative">
-          <img
+          <Image
             src={videoThumbnail}
             alt={`${name}'s testimonial video`}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            width={640}
+            height={360}
           />
           <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors">
             <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
