@@ -9,11 +9,6 @@ export default function Login() {
     password: '',
   });
 
-  const [errors, setErrors] = useState({
-    email: '',
-    password: '',
-  });
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Add login logic here
@@ -105,7 +100,7 @@ export default function Login() {
           </button>
 
           <p className="text-center text-[#6E6E8D]">
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <Link
               href="/signup"
               className="text-[#3F1D9B] hover:text-[#2D0E81] transition-colors duration-200 font-medium">
