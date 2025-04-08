@@ -87,7 +87,7 @@ export default function Profile() {
     bio: false,
     skills: false,
     education: false,
-    certifications: false
+    certifications: false,
   });
 
   const handleImageUpload = (type: 'profile' | 'cover') => {
@@ -99,37 +99,37 @@ export default function Profile() {
   };
 
   const toggleEdit = (section: keyof typeof editMode) => {
-    setEditMode(prev => ({
+    setEditMode((prev) => ({
       ...prev,
-      [section]: !prev[section]
+      [section]: !prev[section],
     }));
   };
 
   const handleBusinessUpdate = (updates: Partial<BusinessInfo>) => {
-    setProfileData(prev => ({
+    setProfileData((prev) => ({
       ...prev,
-      businessInfo: { ...prev.businessInfo, ...updates }
+      businessInfo: { ...prev.businessInfo, ...updates },
     }));
     toggleEdit('business');
   };
 
   const handleBioUpdate = (newBio: string) => {
-    setProfileData(prev => ({ ...prev, bio: newBio }));
+    setProfileData((prev) => ({ ...prev, bio: newBio }));
     toggleEdit('bio');
   };
 
   const handleSkillsUpdate = (newSkills: SkillTag[]) => {
-    setProfileData(prev => ({ ...prev, skills: newSkills }));
+    setProfileData((prev) => ({ ...prev, skills: newSkills }));
     toggleEdit('skills');
   };
 
   const handleEducationUpdate = (newEducation: Education[]) => {
-    setProfileData(prev => ({ ...prev, education: newEducation }));
+    setProfileData((prev) => ({ ...prev, education: newEducation }));
     toggleEdit('education');
   };
 
   const handleCertificationsUpdate = (newCertifications: Certification[]) => {
-    setProfileData(prev => ({ ...prev, certifications: newCertifications }));
+    setProfileData((prev) => ({ ...prev, certifications: newCertifications }));
     toggleEdit('certifications');
   };
 
@@ -176,7 +176,9 @@ export default function Profile() {
                     <input
                       type="text"
                       value={profileData.businessInfo.companyName}
-                      onChange={(e) => handleBusinessUpdate({ companyName: e.target.value })}
+                      onChange={(e) =>
+                        handleBusinessUpdate({ companyName: e.target.value })
+                      }
                       className="border-b border-[#3F1D9B] bg-transparent focus:outline-none"
                     />
                   ) : (
@@ -201,11 +203,15 @@ export default function Profile() {
                     <input
                       type="text"
                       value={profileData.businessInfo.website}
-                      onChange={(e) => handleBusinessUpdate({ website: e.target.value })}
+                      onChange={(e) =>
+                        handleBusinessUpdate({ website: e.target.value })
+                      }
                       className="border-b border-[#3F1D9B] bg-transparent focus:outline-none"
                     />
                   ) : (
-                    <p className="text-gray-700">{profileData.businessInfo.website}</p>
+                    <p className="text-gray-700">
+                      {profileData.businessInfo.website}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -214,11 +220,15 @@ export default function Profile() {
                     <input
                       type="text"
                       value={profileData.businessInfo.teamSize}
-                      onChange={(e) => handleBusinessUpdate({ teamSize: e.target.value })}
+                      onChange={(e) =>
+                        handleBusinessUpdate({ teamSize: e.target.value })
+                      }
                       className="border-b border-[#3F1D9B] bg-transparent focus:outline-none"
                     />
                   ) : (
-                    <p className="text-gray-700">{profileData.businessInfo.teamSize}</p>
+                    <p className="text-gray-700">
+                      {profileData.businessInfo.teamSize}
+                    </p>
                   )}
                 </div>
               </div>
@@ -273,7 +283,9 @@ export default function Profile() {
                     />
                     <button
                       onClick={() => {
-                        const newSkills = profileData.skills.filter(s => s.id !== skill.id);
+                        const newSkills = profileData.skills.filter(
+                          (s) => s.id !== skill.id
+                        );
                         handleSkillsUpdate(newSkills);
                       }}
                       className="text-red-500 hover:text-red-700">
@@ -285,7 +297,7 @@ export default function Profile() {
                   onClick={() => {
                     const newSkill = {
                       id: Date.now().toString(),
-                      name: 'New Skill'
+                      name: 'New Skill',
                     };
                     handleSkillsUpdate([...profileData.skills, newSkill]);
                   }}
@@ -320,13 +332,18 @@ export default function Profile() {
               {editMode.education ? (
                 <>
                   {profileData.education.map((edu, index) => (
-                    <div key={edu.id} className="space-y-2 border-l-2 border-[#3F1D9B]/20 pl-4">
+                    <div
+                      key={edu.id}
+                      className="space-y-2 border-l-2 border-[#3F1D9B]/20 pl-4">
                       <input
                         type="text"
                         value={edu.institution}
                         onChange={(e) => {
                           const newEducation = [...profileData.education];
-                          newEducation[index] = { ...edu, institution: e.target.value };
+                          newEducation[index] = {
+                            ...edu,
+                            institution: e.target.value,
+                          };
                           handleEducationUpdate(newEducation);
                         }}
                         className="w-full border-b border-[#3F1D9B] bg-transparent focus:outline-none font-semibold"
@@ -338,7 +355,10 @@ export default function Profile() {
                           value={edu.degree}
                           onChange={(e) => {
                             const newEducation = [...profileData.education];
-                            newEducation[index] = { ...edu, degree: e.target.value };
+                            newEducation[index] = {
+                              ...edu,
+                              degree: e.target.value,
+                            };
                             handleEducationUpdate(newEducation);
                           }}
                           className="flex-1 border-b border-[#3F1D9B] bg-transparent focus:outline-none"
@@ -349,7 +369,10 @@ export default function Profile() {
                           value={edu.field}
                           onChange={(e) => {
                             const newEducation = [...profileData.education];
-                            newEducation[index] = { ...edu, field: e.target.value };
+                            newEducation[index] = {
+                              ...edu,
+                              field: e.target.value,
+                            };
                             handleEducationUpdate(newEducation);
                           }}
                           className="flex-1 border-b border-[#3F1D9B] bg-transparent focus:outline-none"
@@ -362,7 +385,10 @@ export default function Profile() {
                           value={edu.startYear}
                           onChange={(e) => {
                             const newEducation = [...profileData.education];
-                            newEducation[index] = { ...edu, startYear: e.target.value };
+                            newEducation[index] = {
+                              ...edu,
+                              startYear: e.target.value,
+                            };
                             handleEducationUpdate(newEducation);
                           }}
                           className="w-24 border-b border-[#3F1D9B] bg-transparent focus:outline-none"
@@ -373,7 +399,10 @@ export default function Profile() {
                           value={edu.endYear}
                           onChange={(e) => {
                             const newEducation = [...profileData.education];
-                            newEducation[index] = { ...edu, endYear: e.target.value };
+                            newEducation[index] = {
+                              ...edu,
+                              endYear: e.target.value,
+                            };
                             handleEducationUpdate(newEducation);
                           }}
                           className="w-24 border-b border-[#3F1D9B] bg-transparent focus:outline-none"
@@ -381,7 +410,9 @@ export default function Profile() {
                         />
                         <button
                           onClick={() => {
-                            const newEducation = profileData.education.filter(e => e.id !== edu.id);
+                            const newEducation = profileData.education.filter(
+                              (e) => e.id !== edu.id
+                            );
                             handleEducationUpdate(newEducation);
                           }}
                           className="text-red-500 hover:text-red-700 ml-auto">
@@ -398,9 +429,12 @@ export default function Profile() {
                         degree: '',
                         field: '',
                         startYear: '',
-                        endYear: ''
+                        endYear: '',
                       };
-                      handleEducationUpdate([...profileData.education, newEducation]);
+                      handleEducationUpdate([
+                        ...profileData.education,
+                        newEducation,
+                      ]);
                     }}
                     className="text-[#3F1D9B] hover:text-[#2D0E81] text-sm">
                     + Add Education
@@ -408,8 +442,12 @@ export default function Profile() {
                 </>
               ) : (
                 profileData.education.map((edu) => (
-                  <div key={edu.id} className="border-l-2 border-[#3F1D9B]/20 pl-4">
-                    <h4 className="font-semibold text-gray-900">{edu.institution}</h4>
+                  <div
+                    key={edu.id}
+                    className="border-l-2 border-[#3F1D9B]/20 pl-4">
+                    <h4 className="font-semibold text-gray-900">
+                      {edu.institution}
+                    </h4>
                     <p className="text-gray-700">
                       {edu.degree} in {edu.field}
                     </p>
@@ -425,7 +463,9 @@ export default function Profile() {
           {/* Certifications Section */}
           <div className="mt-6 bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold text-[#3F1D9B]">Certifications</h3>
+              <h3 className="text-xl font-bold text-[#3F1D9B]">
+                Certifications
+              </h3>
               <button
                 onClick={() => toggleEdit('certifications')}
                 className="text-[#3F1D9B] hover:text-[#2D0E81]">
@@ -441,8 +481,13 @@ export default function Profile() {
                         type="text"
                         value={cert.name}
                         onChange={(e) => {
-                          const newCertifications = [...profileData.certifications];
-                          newCertifications[index] = { ...cert, name: e.target.value };
+                          const newCertifications = [
+                            ...profileData.certifications,
+                          ];
+                          newCertifications[index] = {
+                            ...cert,
+                            name: e.target.value,
+                          };
                           handleCertificationsUpdate(newCertifications);
                         }}
                         className="w-full border-b border-[#3F1D9B] bg-transparent focus:outline-none font-semibold"
@@ -453,8 +498,13 @@ export default function Profile() {
                           type="text"
                           value={cert.issuer}
                           onChange={(e) => {
-                            const newCertifications = [...profileData.certifications];
-                            newCertifications[index] = { ...cert, issuer: e.target.value };
+                            const newCertifications = [
+                              ...profileData.certifications,
+                            ];
+                            newCertifications[index] = {
+                              ...cert,
+                              issuer: e.target.value,
+                            };
                             handleCertificationsUpdate(newCertifications);
                           }}
                           className="flex-1 border-b border-[#3F1D9B] bg-transparent focus:outline-none"
@@ -464,8 +514,13 @@ export default function Profile() {
                           type="text"
                           value={cert.date}
                           onChange={(e) => {
-                            const newCertifications = [...profileData.certifications];
-                            newCertifications[index] = { ...cert, date: e.target.value };
+                            const newCertifications = [
+                              ...profileData.certifications,
+                            ];
+                            newCertifications[index] = {
+                              ...cert,
+                              date: e.target.value,
+                            };
                             handleCertificationsUpdate(newCertifications);
                           }}
                           className="w-24 border-b border-[#3F1D9B] bg-transparent focus:outline-none"
@@ -477,8 +532,13 @@ export default function Profile() {
                           type="text"
                           value={cert.url}
                           onChange={(e) => {
-                            const newCertifications = [...profileData.certifications];
-                            newCertifications[index] = { ...cert, url: e.target.value };
+                            const newCertifications = [
+                              ...profileData.certifications,
+                            ];
+                            newCertifications[index] = {
+                              ...cert,
+                              url: e.target.value,
+                            };
                             handleCertificationsUpdate(newCertifications);
                           }}
                           className="flex-1 border-b border-[#3F1D9B] bg-transparent focus:outline-none"
@@ -486,7 +546,10 @@ export default function Profile() {
                         />
                         <button
                           onClick={() => {
-                            const newCertifications = profileData.certifications.filter(c => c.id !== cert.id);
+                            const newCertifications =
+                              profileData.certifications.filter(
+                                (c) => c.id !== cert.id
+                              );
                             handleCertificationsUpdate(newCertifications);
                           }}
                           className="text-red-500 hover:text-red-700">
@@ -502,9 +565,12 @@ export default function Profile() {
                         name: '',
                         issuer: '',
                         date: '',
-                        url: ''
+                        url: '',
                       };
-                      handleCertificationsUpdate([...profileData.certifications, newCertification]);
+                      handleCertificationsUpdate([
+                        ...profileData.certifications,
+                        newCertification,
+                      ]);
                     }}
                     className="text-[#3F1D9B] hover:text-[#2D0E81] text-sm">
                     + Add Certification
@@ -512,9 +578,13 @@ export default function Profile() {
                 </>
               ) : (
                 profileData.certifications.map((cert) => (
-                  <div key={cert.id} className="flex items-start justify-between">
+                  <div
+                    key={cert.id}
+                    className="flex items-start justify-between">
                     <div>
-                      <h4 className="font-semibold text-gray-900">{cert.name}</h4>
+                      <h4 className="font-semibold text-gray-900">
+                        {cert.name}
+                      </h4>
                       <p className="text-sm text-gray-500">
                         {cert.issuer} • {cert.date}
                       </p>

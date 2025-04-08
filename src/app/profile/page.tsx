@@ -14,14 +14,6 @@ import {
 import Profile from '../components/profile/Profile';
 
 export default function ProfilePage() {
-  const [profile, setProfile] = useState({
-    name: 'John Doe',
-    email: 'john@example.com',
-    role: 'freelancer',
-    skills: ['Web Development', 'UI/UX Design'],
-    bio: 'Passionate about creating amazing digital experiences',
-  });
-
   const navItems = [
     { id: 'home', label: 'Home', icon: FaHome, route: '/feed' },
     { id: 'profile', label: 'Profile', icon: FaUser, route: '/profile' },
