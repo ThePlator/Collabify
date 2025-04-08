@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { FaCamera, FaEdit, FaCheckCircle, FaUpload } from 'react-icons/fa';
 
+import Image from 'next/image';
+
 interface SkillTag {
   id: string;
   name: string;
@@ -90,7 +92,7 @@ export default function Profile() {
     certifications: false,
   });
 
-  const handleImageUpload = (type: 'profile' | 'cover') => {
+  const handleImageUpload = () => {
     // Implement image upload logic
   };
 
@@ -137,13 +139,14 @@ export default function Profile() {
     <div className="min-h-screen bg-gradient-to-br from-[#F4F0FF] to-[#FDFDFF]">
       {/* Cover Image Section */}
       <div className="relative h-64 md:h-80 w-full">
-        <img
+        <Image
           src={profileData.coverImage}
           alt="Cover"
-          className="w-full h-full object-cover"
+          layout="fill"
+          objectFit="cover"
         />
         <button
-          onClick={() => handleImageUpload('cover')}
+          onClick={() => handleImageUpload()}
           className="absolute bottom-4 right-4 p-2 bg-white/80 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-all duration-200">
           <FaCamera className="w-5 h-5 text-[#3F1D9B]" />
         </button>
@@ -157,10 +160,12 @@ export default function Profile() {
               <img
                 src={profileData.profileImage}
                 alt={profileData.name}
-                className="w-32 h-32 rounded-full border-4 border-white shadow-lg object-cover"
+                width={128}
+                height={128}
+                className="rounded-full border-4 border-white shadow-lg object-cover"
               />
               <button
-                onClick={() => handleImageUpload('profile')}
+                onClick={() => handleImageUpload()}
                 className="absolute bottom-0 right-0 p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-all duration-200">
                 <FaCamera className="w-4 h-4 text-[#3F1D9B]" />
               </button>
