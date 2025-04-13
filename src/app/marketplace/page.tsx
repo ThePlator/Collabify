@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import {
   FaSearch,
-  FaFilter,
   FaShoppingCart,
   FaStar,
   FaHeart,
@@ -172,9 +172,11 @@ export default function Marketplace() {
                 className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
                 {/* Product Image */}
                 <div className="relative group">
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.name}
+                    width={400}
+                    height={300}
                     className="w-full h-48 object-cover"
                   />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
@@ -204,10 +206,12 @@ export default function Marketplace() {
 
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
-                      <img
+                      <Image
                         src={product.seller.avatar}
                         alt={product.seller.name}
-                        className="w-8 h-8 rounded-full object-cover"
+                        width={32}
+                        height={32}
+                        className="rounded-full object-cover"
                       />
                       <div>
                         <p className="text-sm font-medium text-[#2A175E]">

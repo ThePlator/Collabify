@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import {
   FaSearch,
   FaEllipsisH,
@@ -198,10 +199,12 @@ export default function Messages() {
                 }`}
                 onClick={() => handleChatSelect(chat.id)}>
                 <div className="relative">
-                  <img
+                  <Image
                     src={chat.user.avatar}
                     alt={chat.user.name}
-                    className="w-12 h-12 rounded-full object-cover"
+                    width={48}
+                    height={48}
+                    className="rounded-full object-cover"
                   />
                   <div
                     className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${
@@ -257,10 +260,12 @@ export default function Messages() {
                     </svg>
                   </button>
                   <div className="relative">
-                    <img
+                    <Image
                       src={activeChat.user.avatar}
                       alt={activeChat.user.name}
-                      className="w-10 h-10 rounded-full object-cover"
+                      width={40}
+                      height={40}
+                      className="rounded-full object-cover"
                     />
                     <div
                       className={`absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full border-2 border-white ${
@@ -292,10 +297,12 @@ export default function Messages() {
                     className={`flex items-end gap-2 ${
                       message.isOwn ? 'flex-row-reverse' : ''
                     }`}>
-                    <img
+                    <Image
                       src={message.sender.avatar}
                       alt={message.sender.name}
-                      className="w-8 h-8 rounded-full object-cover"
+                      width={32}
+                      height={32}
+                      className="rounded-full object-cover"
                     />
                     <div
                       className={`max-w-[70%] p-3 rounded-lg ${

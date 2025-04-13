@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import {
   FaSearch,
-  FaFilter,
   FaMapMarkerAlt,
   FaClock,
   FaDollarSign,
@@ -136,7 +136,9 @@ export default function Jobs() {
                       type: e.target.value,
                     })
                   }>
-                  <option value="" className="text-gray-500">Job Type</option>
+                  <option value="" className="text-gray-500">
+                    Job Type
+                  </option>
                   <option value="full-time">Full-time</option>
                   <option value="part-time">Part-time</option>
                   <option value="contract">Contract</option>
@@ -183,10 +185,12 @@ export default function Jobs() {
                 key={job.id}
                 className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
                 <div className="flex items-start gap-4">
-                  <img
+                  <Image
                     src={job.logo}
                     alt={`${job.company} logo`}
-                    className="w-16 h-16 rounded-lg object-cover"
+                    width={64}
+                    height={64}
+                    className="rounded-lg object-cover"
                   />
                   <div className="flex-1">
                     <div className="flex items-start justify-between">

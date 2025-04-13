@@ -3,7 +3,6 @@
 import React from 'react';
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import {
   FaHeart,
   FaComment,
@@ -159,10 +158,12 @@ export default function Feed() {
                   className="bg-white rounded-lg shadow-sm p-4 md:p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <img
+                      <Image
                         src={post.author.avatar}
                         alt={post.author.name}
-                        className="w-10 h-10 rounded-full object-cover"
+                        width={40}
+                        height={40}
+                        className="rounded-full object-cover"
                       />
                       <div>
                         <h3 className="font-semibold text-gray-900">
@@ -182,9 +183,11 @@ export default function Feed() {
 
                   {post.content.image && (
                     <div className="mb-4 rounded-lg overflow-hidden">
-                      <img
+                      <Image
                         src={post.content.image}
                         alt="Post content"
+                        width={800}
+                        height={400}
                         className="w-full h-auto"
                       />
                     </div>
@@ -281,10 +284,12 @@ export default function Feed() {
                 <div
                   key={connection.name}
                   className="flex items-center gap-2 hover:bg-[#F4F0FF] p-2 rounded-lg transition-colors cursor-pointer">
-                  <img
+                  <Image
                     src={connection.avatar}
                     alt={connection.name}
-                    className="w-8 h-8 rounded-full object-cover"
+                    width={32}
+                    height={32}
+                    className="rounded-full object-cover"
                   />
                   <div className="flex-1 min-w-0">
                     <h4 className="font-medium text-sm text-gray-900 truncate">
@@ -304,9 +309,11 @@ export default function Feed() {
 
           {/* Advertisement */}
           <div className="rounded-lg overflow-hidden shadow-sm border border-[#D6D6E7]">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop"
               alt="Advertisement"
+              width={500}
+              height={300}
               className="w-full h-32 object-cover"
             />
             <div className="p-3">
