@@ -13,6 +13,7 @@ import {
   FaFilter,
 } from 'react-icons/fa';
 import Sidebar from '../components/Sidebar';
+import Image from 'next/image';
 
 interface Notification {
   id: string;
