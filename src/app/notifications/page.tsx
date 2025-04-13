@@ -105,7 +105,7 @@ export default function Notifications() {
     );
   };
 
-  const handleConnectionAction = (notificationId: string, accept: boolean) => {
+  const handleConnectionAction = (notificationId: string) => {
     setNotifications((prev) =>
       prev.map((notification) =>
         notification.id === notificationId
@@ -194,9 +194,11 @@ export default function Notifications() {
                 }`}>
                 <div className="flex items-start gap-4">
                   <div className="relative">
-                    <img
+                    <Image
                       src={notification.user.avatar}
                       alt={notification.user.name}
+                      width={48}
+                      height={48}
                       className="w-12 h-12 rounded-full object-cover"
                     />
                     <div

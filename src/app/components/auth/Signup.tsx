@@ -192,7 +192,7 @@ export default function Signup() {
           <button
             type="button"
             className="w-full px-8 py-4 bg-white text-gray-700 rounded-md font-semibold text-lg transition-all duration-200 hover:bg-gray-50 hover:scale-[1.02] shadow-sm border border-[#D6D6E7] flex items-center justify-center gap-2">
-            <img src="/google.svg" alt="Google" width={20} height={20} />
+            <Image src="/google.svg" alt="Google" width={20} height={20} />
             Sign up with Google
           </button>
 

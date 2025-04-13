@@ -157,7 +157,7 @@ export default function Profile() {
         <div className="relative">
           <div className="relative z-10">
             <div className="relative">
-              <img
+              <Image
                 src={profileData.profileImage}
                 alt={profileData.name}
                 width={128}
@@ -625,9 +625,11 @@ export default function Profile() {
                 <div
                   key={item.id}
                   className="relative group overflow-hidden rounded-lg shadow-md">
-                  <img
+                  <Image
                     src={item.thumbnail || item.url}
                     alt={item.title}
+                    width={800}
+                    height={400}
                     className="w-full h-48 object-cover"
                   />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">

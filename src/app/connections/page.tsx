@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import Sidebar from '../components/Sidebar';
-import { FaUserCircle, FaLink, FaEllipsisH } from 'react-icons/fa';
+import { FaLink, FaEllipsisH } from 'react-icons/fa';
+import Image from 'next/image';
 
 export default function ConnectionsPage() {
   const [activeNav, setActiveNav] = useState('connections');
@@ -62,9 +63,11 @@ export default function ConnectionsPage() {
                 <div className="flex items-start justify-between mb-6 relative">
                   <div className="flex items-center gap-4">
                     <div className="relative">
-                      <img
+                      <Image
                         src={connection.avatar}
                         alt={connection.name}
+                        width={56}
+                        height={56}
                         className="w-14 h-14 rounded-full object-cover ring-2 ring-white shadow-md"
                       />
                       <div className={`absolute bottom-0 right-0 w-4 h-4 rounded-full border-2 border-white ${connection.status === 'Active' ? 'bg-green-500' : 'bg-gray-400'}`} />
