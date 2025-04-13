@@ -106,7 +106,7 @@ export default function Notifications() {
     );
   };
 
-  const handleConnectionAction = (notificationId: string, accept: boolean) => {
+  const handleConnectionAction = (notificationId: string) => {
     setNotifications((prev) =>
       prev.map((notification) =>
         notification.id === notificationId
@@ -230,14 +230,14 @@ export default function Notifications() {
                             <>
                               <button
                                 onClick={() =>
-                                  handleConnectionAction(notification.id, true)
+                                  handleConnectionAction(notification.id)
                                 }
                                 className="p-2 text-green-500 hover:bg-green-50 rounded-full transition-colors">
                                 <FaCheck className="w-5 h-5" />
                               </button>
                               <button
                                 onClick={() =>
-                                  handleConnectionAction(notification.id, false)
+                                  handleConnectionAction(notification.id)
                                 }
                                 className="p-2 text-red-500 hover:bg-red-50 rounded-full transition-colors">
                                 <FaTimes className="w-5 h-5" />
