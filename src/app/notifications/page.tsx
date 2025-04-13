@@ -106,7 +106,7 @@ export default function Notifications() {
     );
   };
 
-  const handleConnectionAction = (notificationId: string) => {
+  const handleConnectionAction = (notificationId: string, accept: boolean) => {
     setNotifications((prev) =>
       prev.map((notification) =>
         notification.id === notificationId
