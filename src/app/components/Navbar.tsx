@@ -75,10 +75,10 @@ export default function Navbar() {
         <div className="md:hidden bg-white border-t border-[#D6D6E7]/30">
           <div className="px-2 pt-2 pb-3 space-y-1">
             <Link
-              href="/features"
+              href="/feed"
               className="block px-3 py-2 text-gray-600 hover:text-[#3F1D9B] transition-colors duration-200"
               onClick={() => setIsMenuOpen(false)}>
-              Features
+              Feed
             </Link>
             <Link
               href="/pricing"
