@@ -35,9 +35,9 @@ export default function Navbar() {
               Pricing
             </Link>
             <Link
-              href="/about"
+              href="/admin"
               className="text-gray-600 hover:text-[#3F1D9B] transition-colors duration-200">
-              About
+              Admin
             </Link>
           </div>
 
@@ -87,10 +87,10 @@ export default function Navbar() {
               Pricing
             </Link>
             <Link
-              href="/about"
+              href="/admin"
               className="block px-3 py-2 text-gray-600 hover:text-[#3F1D9B] transition-colors duration-200"
               onClick={() => setIsMenuOpen(false)}>
-              About
+              Admin
             </Link>
             <Link
               href="/login"
