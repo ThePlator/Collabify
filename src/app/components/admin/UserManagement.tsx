@@ -411,65 +411,65 @@ export default function UserManagement() {
   return (
     <div className="space-y-6">
       {/* User Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white rounded-xl shadow-sm p-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="bg-white rounded-xl shadow-sm p-4 md:p-6">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-[#F4F0FF] rounded-lg">
-              <FaUsers className="w-6 h-6 text-[#3F1D9B]" />
+            <div className="p-2 md:p-3 bg-[#F4F0FF] rounded-lg">
+              <FaUsers className="w-5 h-5 md:w-6 md:h-6 text-[#3F1D9B]" />
             </div>
-            <span className="text-sm text-[#3F1D9B] font-medium">
+            <span className="text-xs md:text-sm text-[#3F1D9B] font-medium">
               Total Users
             </span>
           </div>
-          <h3 className="text-2xl font-bold text-[#2A175E]">{users.length}</h3>
-          <p className="text-[#6E6E8D]">Registered accounts</p>
+          <h3 className="text-xl md:text-2xl font-bold text-[#2A175E]">{users.length}</h3>
+          <p className="text-sm text-[#6E6E8D]">Registered accounts</p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm p-6">
+        <div className="bg-white rounded-xl shadow-sm p-4 md:p-6">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-green-100 rounded-lg">
-              <FaUserCheck className="w-6 h-6 text-green-600" />
+            <div className="p-2 md:p-3 bg-green-100 rounded-lg">
+              <FaUserCheck className="w-5 h-5 md:w-6 md:h-6 text-green-600" />
             </div>
-            <span className="text-sm text-green-600 font-medium">
+            <span className="text-xs md:text-sm text-green-600 font-medium">
               Active Users
             </span>
           </div>
-          <h3 className="text-2xl font-bold text-[#2A175E]">
+          <h3 className="text-xl md:text-2xl font-bold text-[#2A175E]">
             {users.filter((user) => user.status === 'active').length}
           </h3>
-          <p className="text-[#6E6E8D]">Currently active</p>
+          <p className="text-sm text-[#6E6E8D]">Currently active</p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm p-6">
+        <div className="bg-white rounded-xl shadow-sm p-4 md:p-6">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-purple-100 rounded-lg">
-              <FaUserShield className="w-6 h-6 text-purple-600" />
+            <div className="p-2 md:p-3 bg-purple-100 rounded-lg">
+              <FaUserShield className="w-5 h-5 md:w-6 md:h-6 text-purple-600" />
             </div>
-            <span className="text-sm text-purple-600 font-medium">Admins</span>
+            <span className="text-xs md:text-sm text-purple-600 font-medium">Admins</span>
           </div>
-          <h3 className="text-2xl font-bold text-[#2A175E]">
+          <h3 className="text-xl md:text-2xl font-bold text-[#2A175E]">
             {users.filter((user) => user.role === 'Admin').length}
           </h3>
-          <p className="text-[#6E6E8D]">Administrator accounts</p>
+          <p className="text-sm text-[#6E6E8D]">Administrator accounts</p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm p-6">
+        <div className="bg-white rounded-xl shadow-sm p-4 md:p-6">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-blue-100 rounded-lg">
-              <FaHistory className="w-6 h-6 text-blue-600" />
+            <div className="p-2 md:p-3 bg-blue-100 rounded-lg">
+              <FaHistory className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
             </div>
-            <span className="text-sm text-blue-600 font-medium">
+            <span className="text-xs md:text-sm text-blue-600 font-medium">
               Recent Activity
             </span>
           </div>
-          <h3 className="text-2xl font-bold text-[#2A175E]">
+          <h3 className="text-xl md:text-2xl font-bold text-[#2A175E]">
             {activityLogs.length}
           </h3>
-          <p className="text-[#6E6E8D]">Activity logs</p>
+          <p className="text-sm text-[#6E6E8D]">Activity logs</p>
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
+      <div className="bg-white rounded-xl shadow-sm p-4 md:p-6 mb-6 overflow-x-auto">
         <UserHeader
           onActivityLogOpen={() => setIsActivityLogOpen(true)}
           onExportUsers={handleExportUsers}

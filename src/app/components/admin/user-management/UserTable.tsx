@@ -48,114 +48,122 @@ export default function UserTable({
   };
 
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full">
-        <thead>
-          <tr className="border-b border-[#D6D6E7]">
-            <th
-              className="text-left py-4 px-4 text-[#2A175E] font-semibold cursor-pointer"
-              onClick={() => onSort('name')}>
-              <div className="flex items-center gap-2">
-                Name
-                {getSortIcon('name')}
-              </div>
-            </th>
-            <th
-              className="text-left py-4 px-4 text-[#2A175E] font-semibold cursor-pointer"
-              onClick={() => onSort('email')}>
-              <div className="flex items-center gap-2">
-                Email
-                {getSortIcon('email')}
-              </div>
-            </th>
-            <th
-              className="text-left py-4 px-4 text-[#2A175E] font-semibold cursor-pointer"
-              onClick={() => onSort('role')}>
-              <div className="flex items-center gap-2">
-                Role
-                {getSortIcon('role')}
-              </div>
-            </th>
-            <th
-              className="text-left py-4 px-4 text-[#2A175E] font-semibold cursor-pointer"
-              onClick={() => onSort('status')}>
-              <div className="flex items-center gap-2">
-                Status
-                {getSortIcon('status')}
-              </div>
-            </th>
-            <th
-              className="text-left py-4 px-4 text-[#2A175E] font-semibold cursor-pointer"
-              onClick={() => onSort('department')}>
-              <div className="flex items-center gap-2">
-                Department
-                {getSortIcon('department')}
-              </div>
-            </th>
-            <th
-              className="text-left py-4 px-4 text-[#2A175E] font-semibold cursor-pointer"
-              onClick={() => onSort('location')}>
-              <div className="flex items-center gap-2">
-                Location
-                {getSortIcon('location')}
-              </div>
-            </th>
-            <th className="text-left py-4 px-4 text-[#2A175E] font-semibold">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr
-              key={user.id}
-              className="border-b border-[#D6D6E7] hover:bg-[#F4F0FF]">
-              <td className="py-4 px-4 text-gray-800 font-medium">
-                {user.name}
-              </td>
-              <td className="py-4 px-4 text-gray-800">{user.email}</td>
-              <td className="py-4 px-4">
-                <span
-                  className={`px-2 py-1 rounded-full text-sm ${
-                    user.role === 'Admin'
-                      ? 'bg-purple-100 text-purple-700'
-                      : 'bg-blue-100 text-blue-700'
-                  }`}>
-                  {user.role}
-                </span>
-              </td>
-              <td className="py-4 px-4">
-                <span
-                  className={`px-2 py-1 rounded-full text-sm ${
-                    user.status === 'active'
-                      ? 'bg-green-100 text-green-700'
-                      : user.status === 'inactive'
-                      ? 'bg-gray-100 text-gray-700'
-                      : 'bg-red-100 text-red-700'
-                  }`}>
-                  {user.status}
-                </span>
-              </td>
-              <td className="py-4 px-4 text-gray-800">{user.department}</td>
-              <td className="py-4 px-4 text-gray-800">{user.location}</td>
-              <td className="py-4 px-4 flex items-center gap-2">
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => onEdit(user)}
-                    className="p-2 text-[#3F1D9B] hover:bg-[#F4F0FF] rounded-lg transition-colors">
-                    <FaEdit className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => onDelete(user.id)}
-                    className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors">
-                    <FaTrash className="w-4 h-4" />
-                  </button>
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="overflow-x-auto -mx-4 sm:mx-0">
+      <div className="inline-block min-w-full align-middle">
+        <div className="overflow-hidden border border-[#D6D6E7] rounded-lg">
+          <table className="min-w-full divide-y divide-[#D6D6E7]">
+            <thead className="bg-[#F4F0FF]">
+              <tr>
+                <th
+                  className="px-3 py-3.5 text-left text-sm font-semibold text-[#2A175E] sm:pl-6 cursor-pointer"
+                  onClick={() => onSort('name')}>
+                  <div className="flex items-center gap-2">
+                    Name
+                    {getSortIcon('name')}
+                  </div>
+                </th>
+                <th
+                  className="px-3 py-3.5 text-left text-sm font-semibold text-[#2A175E] cursor-pointer hidden sm:table-cell"
+                  onClick={() => onSort('email')}>
+                  <div className="flex items-center gap-2">
+                    Email
+                    {getSortIcon('email')}
+                  </div>
+                </th>
+                <th
+                  className="px-3 py-3.5 text-left text-sm font-semibold text-[#2A175E] cursor-pointer"
+                  onClick={() => onSort('role')}>
+                  <div className="flex items-center gap-2">
+                    Role
+                    {getSortIcon('role')}
+                  </div>
+                </th>
+                <th
+                  className="px-3 py-3.5 text-left text-sm font-semibold text-[#2A175E] cursor-pointer hidden md:table-cell"
+                  onClick={() => onSort('status')}>
+                  <div className="flex items-center gap-2">
+                    Status
+                    {getSortIcon('status')}
+                  </div>
+                </th>
+                <th
+                  className="px-3 py-3.5 text-left text-sm font-semibold text-[#2A175E] cursor-pointer hidden lg:table-cell"
+                  onClick={() => onSort('department')}>
+                  <div className="flex items-center gap-2">
+                    Department
+                    {getSortIcon('department')}
+                  </div>
+                </th>
+                <th
+                  className="px-3 py-3.5 text-left text-sm font-semibold text-[#2A175E] cursor-pointer hidden lg:table-cell"
+                  onClick={() => onSort('location')}>
+                  <div className="flex items-center gap-2">
+                    Location
+                    {getSortIcon('location')}
+                  </div>
+                </th>
+                <th className="px-3 py-3.5 text-right text-sm font-semibold text-[#2A175E] sm:pr-6">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[#D6D6E7] bg-white">
+              {users.map((user) => (
+                <tr key={user.id} className="hover:bg-[#F4F0FF]/50">
+                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900 sm:pl-6">
+                    {user.name}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900 hidden sm:table-cell">
+                    {user.email}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
+                    <span
+                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                        user.role === 'Admin'
+                          ? 'bg-purple-100 text-purple-800'
+                          : 'bg-blue-100 text-blue-800'
+                      }`}>
+                      {user.role}
+                    </span>
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900 hidden md:table-cell">
+                    <span
+                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                        user.status === 'active'
+                          ? 'bg-green-100 text-green-800'
+                          : user.status === 'inactive'
+                          ? 'bg-gray-100 text-gray-800'
+                          : 'bg-red-100 text-red-800'
+                      }`}>
+                      {user.status}
+                    </span>
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900 hidden lg:table-cell">
+                    {user.department || '-'}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900 hidden lg:table-cell">
+                    {user.location || '-'}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900 text-right sm:pr-6">
+                    <div className="flex justify-end gap-2">
+                      <button
+                        onClick={() => onEdit(user)}
+                        className="text-[#3F1D9B] hover:text-[#2A175E] transition-colors">
+                        <FaEdit className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => onDelete(user.id)}
+                        className="text-red-600 hover:text-red-800 transition-colors">
+                        <FaTrash className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }

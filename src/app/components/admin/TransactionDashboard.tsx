@@ -63,6 +63,7 @@ export default function TransactionDashboard() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedType, setSelectedType] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
+  const [timeRange, setTimeRange] = useState('This Month');
 
   const filteredTransactions = transactions.filter((transaction) => {
     const matchesSearch =
@@ -90,11 +91,52 @@ export default function TransactionDashboard() {
     .filter((t) => t.status === 'pending')
     .reduce((sum, t) => sum + t.amount, 0);
 
+  const summaryData = {
+    totalRevenue: 125000,
+    totalTransactions: 1250,
+    averageValue: 100,
+    growthRate: 25,
+  };
+
+  const recentTransactions = [
+    {
+      id: 1,
+      user: 'John Doe',
+      amount: 500,
+      type: 'Credit',
+      date: '2024-03-15',
+      status: 'Completed',
+    },
+    {
+      id: 2,
+      user: 'Jane Smith',
+      amount: 750,
+      type: 'Debit',
+      date: '2024-03-14',
+      status: 'Pending',
+    },
+    {
+      id: 3,
+      user: 'Mike Johnson',
+      amount: 1000,
+      type: 'Credit',
+      date: '2024-03-13',
+      status: 'Completed',
+    },
+  ];
+
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(amount);
+  };
+
   return (
     <div className="space-y-6">
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-xl shadow-sm p-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 w-full">
+        <div className="bg-white rounded-xl shadow-sm p-4 md:p-6 w-full">
           <div className="flex items-center justify-between mb-4">
             <div className="p-3 bg-green-100 rounded-lg">
               <FaDollarSign className="w-6 h-6 text-green-600" />
@@ -138,15 +180,8 @@ export default function TransactionDashboard() {
         </div>
       </div>
 
-      {/* Transactions Table */}
-      <div className="bg-white rounded-xl shadow-sm p-6">
-        <div className="mb-6">
-          <h2 className="text-2xl font-bold text-[#2A175E] mb-2">
-            Recent Transactions
-          </h2>
-          <p className="text-[#6E6E8D]">Monitor and track all transactions</p>
-        </div>
-
+      {/* Filters and Search */}
+      <div className="bg-white rounded-xl shadow-sm p-6 w-full">
         <div className="mb-6 flex flex-col md:flex-row gap-4">
           <div className="flex-1 relative">
             <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[#6E6E8D]" />
@@ -158,120 +193,105 @@ export default function TransactionDashboard() {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <select
-            className="px-4 py-2 rounded-lg border border-[#D6D6E7] focus:outline-none focus:ring-2 focus:ring-[#3F1D9B]/20"
-            value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value)}>
-            <option value="">All Types</option>
-            <option value="course_purchase">Course Purchase</option>
-            <option value="product_sale">Product Sale</option>
-            <option value="subscription">Subscription</option>
-            <option value="refund">Refund</option>
-          </select>
-          <select
-            className="px-4 py-2 rounded-lg border border-[#D6D6E7] focus:outline-none focus:ring-2 focus:ring-[#3F1D9B]/20"
-            value={selectedStatus}
-            onChange={(e) => setSelectedStatus(e.target.value)}>
-            <option value="">All Status</option>
-            <option value="completed">Completed</option>
-            <option value="pending">Pending</option>
-            <option value="failed">Failed</option>
-            <option value="refunded">Refunded</option>
-          </select>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <select
+              className="w-full sm:w-48 px-4 py-2 rounded-lg border border-[#D6D6E7] focus:outline-none focus:ring-2 focus:ring-[#3F1D9B]/20"
+              value={selectedType}
+              onChange={(e) => setSelectedType(e.target.value)}>
+              <option value="">All Types</option>
+              <option value="course_purchase">Course Purchase</option>
+              <option value="product_sale">Product Sale</option>
+              <option value="subscription">Subscription</option>
+              <option value="refund">Refund</option>
+            </select>
+            <select
+              className="w-full sm:w-48 px-4 py-2 rounded-lg border border-[#D6D6E7] focus:outline-none focus:ring-2 focus:ring-[#3F1D9B]/20"
+              value={selectedStatus}
+              onChange={(e) => setSelectedStatus(e.target.value)}>
+              <option value="">All Status</option>
+              <option value="completed">Completed</option>
+              <option value="pending">Pending</option>
+              <option value="failed">Failed</option>
+              <option value="refunded">Refunded</option>
+            </select>
+          </div>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-[#D6D6E7]">
-                <th className="text-left py-4 px-4 text-[#2A175E] font-semibold">
-                  ID
-                </th>
-                <th className="text-left py-4 px-4 text-[#2A175E] font-semibold">
-                  Type
-                </th>
-                <th className="text-left py-4 px-4 text-[#2A175E] font-semibold">
-                  Amount
-                </th>
-                <th className="text-left py-4 px-4 text-[#2A175E] font-semibold">
-                  Status
-                </th>
-                <th className="text-left py-4 px-4 text-[#2A175E] font-semibold">
-                  Customer
-                </th>
-                <th className="text-left py-4 px-4 text-[#2A175E] font-semibold">
-                  Merchant
-                </th>
-                <th className="text-left py-4 px-4 text-[#2A175E] font-semibold">
-                  Date
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredTransactions.map((transaction) => (
-                <tr
-                  key={transaction.id}
-                  className="border-b border-[#D6D6E7] hover:bg-[#F4F0FF]/50">
-                  <td className="py-4 px-4 text-[#2A175E] font-medium">
-                    {transaction.id}
-                  </td>
-                  <td className="py-4 px-4">
-                    <span
-                      className={`px-3 py-1 rounded-full text-sm ${
-                        transaction.type === 'course_purchase'
-                          ? 'bg-blue-100 text-blue-700'
-                          : transaction.type === 'product_sale'
-                          ? 'bg-purple-100 text-purple-700'
-                          : transaction.type === 'subscription'
-                          ? 'bg-green-100 text-green-700'
-                          : 'bg-red-100 text-red-700'
-                      }`}>
+        {/* Transactions Table */}
+        <div className="overflow-x-auto -mx-0 px-0 sm:-mx-6 sm:px-6">
+          <div className="border rounded-lg overflow-hidden">
+            <table className="w-full min-w-[900px] table-fixed bg-white">
+              <thead>
+                <tr className="text-left border-b border-[#D6D6E7]">
+                  <th className="pb-4 pl-4 text-sm font-semibold text-[#2A175E] w-[10%]">
+                    ID
+                  </th>
+                  <th className="pb-4 text-sm font-semibold text-[#2A175E] w-[15%]">
+                    Type
+                  </th>
+                  <th className="pb-4 text-sm font-semibold text-[#2A175E] w-[10%]">
+                    Amount
+                  </th>
+                  <th className="pb-4 text-sm font-semibold text-[#2A175E] w-[10%]">
+                    Status
+                  </th>
+                  <th className="pb-4 text-sm font-semibold text-[#2A175E] w-[20%] hidden md:table-cell">
+                    Customer
+                  </th>
+                  <th className="pb-4 text-sm font-semibold text-[#2A175E] w-[20%] hidden lg:table-cell">
+                    Merchant
+                  </th>
+                  <th className="pb-4 pr-4 text-sm font-semibold text-[#2A175E] w-[15%]">
+                    Date
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#D6D6E7]">
+                {filteredTransactions.map((transaction) => (
+                  <tr key={transaction.id} className="hover:bg-[#F4F0FF]/50">
+                    <td className="py-4 pl-4 text-sm text-[#6E6E8D] whitespace-nowrap">
+                      {transaction.id}
+                    </td>
+                    <td className="py-4 text-sm text-[#6E6E8D] whitespace-nowrap">
                       {transaction.type
                         .split('_')
                         .map(
                           (word) => word.charAt(0).toUpperCase() + word.slice(1)
                         )
                         .join(' ')}
-                    </span>
-                  </td>
-                  <td className="py-4 px-4">
-                    <span
-                      className={
-                        transaction.amount < 0
-                          ? 'text-red-600'
-                          : 'text-green-600'
-                      }>
+                    </td>
+                    <td className="py-4 text-sm text-[#6E6E8D] whitespace-nowrap">
                       ${Math.abs(transaction.amount).toFixed(2)}
-                    </span>
-                  </td>
-                  <td className="py-4 px-4">
-                    <span
-                      className={`px-3 py-1 rounded-full text-sm ${
-                        transaction.status === 'completed'
-                          ? 'bg-green-100 text-green-700'
-                          : transaction.status === 'pending'
-                          ? 'bg-yellow-100 text-yellow-700'
-                          : transaction.status === 'failed'
-                          ? 'bg-red-100 text-red-700'
-                          : 'bg-gray-100 text-gray-700'
-                      }`}>
-                      {transaction.status.charAt(0).toUpperCase() +
-                        transaction.status.slice(1)}
-                    </span>
-                  </td>
-                  <td className="py-4 px-4 text-[#2A175E]">
-                    {transaction.customer}
-                  </td>
-                  <td className="py-4 px-4 text-[#2A175E]">
-                    {transaction.merchant}
-                  </td>
-                  <td className="py-4 px-4 text-[#2A175E]">
-                    {transaction.date}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                    </td>
+                    <td className="py-4 text-sm whitespace-nowrap">
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          transaction.status === 'completed'
+                            ? 'bg-green-100 text-green-800'
+                            : transaction.status === 'pending'
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : transaction.status === 'failed'
+                            ? 'bg-red-100 text-red-800'
+                            : 'bg-gray-100 text-gray-800'
+                        }`}>
+                        {transaction.status.charAt(0).toUpperCase() +
+                          transaction.status.slice(1)}
+                      </span>
+                    </td>
+                    <td className="py-4 text-sm text-[#6E6E8D] whitespace-nowrap hidden md:table-cell">
+                      {transaction.customer}
+                    </td>
+                    <td className="py-4 text-sm text-[#6E6E8D] whitespace-nowrap hidden lg:table-cell">
+                      {transaction.merchant}
+                    </td>
+                    <td className="py-4 pr-4 text-sm text-[#6E6E8D] whitespace-nowrap">
+                      {new Date(transaction.date).toLocaleString()}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

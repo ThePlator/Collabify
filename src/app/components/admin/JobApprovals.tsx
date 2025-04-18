@@ -96,7 +96,7 @@ export default function JobApprovals() {
           />
         </div>
         <select
-          className="px-4 py-2 rounded-lg border border-[#D6D6E7] focus:outline-none focus:ring-2 focus:ring-[#3F1D9B]/20"
+          className="w-full md:w-48 px-4 py-2 rounded-lg border border-[#D6D6E7] focus:outline-none focus:ring-2 focus:ring-[#3F1D9B]/20"
           value={selectedStatus}
           onChange={(e) => setSelectedStatus(e.target.value)}>
           <option value="">All Status</option>
@@ -106,86 +106,62 @@ export default function JobApprovals() {
         </select>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead>
-            <tr className="border-b border-[#D6D6E7]">
-              <th className="text-left py-4 px-4 text-[#2A175E] font-semibold">
-                Job Title
-              </th>
-              <th className="text-left py-4 px-4 text-[#2A175E] font-semibold">
-                Company
-              </th>
-              <th className="text-left py-4 px-4 text-[#2A175E] font-semibold">
-                Location
-              </th>
-              <th className="text-left py-4 px-4 text-[#2A175E] font-semibold">
-                Type
-              </th>
-              <th className="text-left py-4 px-4 text-[#2A175E] font-semibold">
-                Status
-              </th>
-              <th className="text-left py-4 px-4 text-[#2A175E] font-semibold">
-                Submitted
-              </th>
-              <th className="text-left py-4 px-4 text-[#2A175E] font-semibold">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredJobs.map((job) => (
-              <tr
-                key={job.id}
-                className="border-b border-[#D6D6E7] hover:bg-[#F4F0FF]/50">
-                <td className="py-4 px-4 text-[#2A175E] font-medium">
-                  {job.title}
-                </td>
-                <td className="py-4 px-4 text-[#2A175E]">{job.company}</td>
-                <td className="py-4 px-4 text-[#2A175E]">{job.location}</td>
-                <td className="py-4 px-4 text-[#2A175E]">{job.type}</td>
-                <td className="py-4 px-4">
-                  <span
-                    className={`px-3 py-1 rounded-full text-sm ${
-                      job.status === 'approved'
-                        ? 'bg-green-100 text-green-700'
-                        : job.status === 'rejected'
-                        ? 'bg-red-100 text-red-700'
-                        : 'bg-yellow-100 text-yellow-700'
-                    }`}>
-                    {job.status.charAt(0).toUpperCase() + job.status.slice(1)}
-                  </span>
-                </td>
-                <td className="py-4 px-4 text-[#2A175E]">{job.submittedAt}</td>
-                <td className="py-4 px-4">
-                  <div className="flex gap-2">
-                    <button
-                      className="p-2 text-[#3F1D9B] hover:bg-[#F4F0FF] rounded-lg transition-colors"
-                      title="View Details">
-                      <FaEye className="w-4 h-4" />
-                    </button>
-                    {job.status === 'pending' && (
-                      <>
-                        <button
-                          onClick={() => handleStatusChange(job.id, 'approved')}
-                          className="p-2 text-green-500 hover:bg-green-50 rounded-lg transition-colors"
-                          title="Approve">
-                          <FaCheck className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={() => handleStatusChange(job.id, 'rejected')}
-                          className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                          title="Reject">
-                          <FaTimes className="w-4 h-4" />
-                        </button>
-                      </>
-                    )}
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredJobs.map((job) => (
+          <div
+            key={job.id}
+            className="bg-white rounded-lg border border-[#D6D6E7] p-6 hover:shadow-lg transition-shadow duration-200">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-start justify-between">
+                <div>
+                  <h3 className="text-lg font-semibold text-[#2A175E] mb-1">
+                    {job.title}
+                  </h3>
+                  <p className="text-[#6E6E8D] text-sm">{job.company}</p>
+                </div>
+                <span
+                  className={`px-3 py-1 rounded-full text-xs font-medium ${
+                    job.status === 'pending'
+                      ? 'bg-yellow-100 text-yellow-800'
+                      : job.status === 'approved'
+                      ? 'bg-green-100 text-green-800'
+                      : 'bg-red-100 text-red-800'
+                  }`}>
+                  {job.status.charAt(0).toUpperCase() + job.status.slice(1)}
+                </span>
+              </div>
+
+              <div className="space-y-2 text-sm text-[#6E6E8D]">
+                <p>Location: {job.location}</p>
+                <p>Type: {job.type}</p>
+                <p>Salary: {job.salary}</p>
+                <p className="truncate">Submitted by: {job.submittedBy}</p>
+                <p>Date: {new Date(job.submittedAt).toLocaleDateString()}</p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-2 mt-4">
+                <button
+                  onClick={() => handleStatusChange(job.id, 'approved')}
+                  disabled={job.status !== 'pending'}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200">
+                  <FaCheck className="w-4 h-4" />
+                  <span>Approve</span>
+                </button>
+                <button
+                  onClick={() => handleStatusChange(job.id, 'rejected')}
+                  disabled={job.status !== 'pending'}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200">
+                  <FaTimes className="w-4 h-4" />
+                  <span>Reject</span>
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-[#D6D6E7] text-[#6E6E8D] hover:bg-[#F4F0FF] transition-colors duration-200">
+                  <FaEye className="w-4 h-4" />
+                  <span>View</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
